@@ -54,6 +54,7 @@ import com.android.launcher3.LauncherFiles;
 import com.android.launcher3.R;
 import com.android.launcher3.Utilities;
 import com.android.launcher3.sospos.SospOSUtils;
+import com.android.launcher3.sospos.trust.TrustAppsActivity;
 import com.android.launcher3.model.WidgetsModel;
 import com.android.launcher3.states.RotationHelper;
 import com.android.launcher3.uioverrides.flags.DeveloperOptionsUI;
@@ -76,6 +77,7 @@ public class SettingsActivity extends FragmentActivity
     
     private static final String KEY_MINUS_ONE = "pref_enable_minus_one";
     private static final String SEARCH_PACKAGE = "com.google.android.googlequicksearchbox";
+    public static final String KEY_TRUST_APPS = "pref_trust_apps";
 
     // Intent extra to indicate the pref-key to highlighted when opening the settings activity
     public static final String EXTRA_FRAGMENT_HIGHLIGHT_KEY = ":settings:fragment_args_key";
@@ -270,6 +272,17 @@ public class SettingsActivity extends FragmentActivity
                         return true;
                     }
                     return false;
+                    
+                                    case KEY_TRUST_APPS:
+                    preference.setOnPreferenceClickListener(p -> {
+                        SospOSUtils.showLockScreen(getActivity(),
+                                getString(R.string.trust_apps_manager_name), () -> {
+                            Intent intent = new Intent(getActivity(), TrustAppsActivity.class);
+                            startActivity(intent);
+                        });
+                        return true;
+                    });
+                    return true;
             }
 
             return true;
