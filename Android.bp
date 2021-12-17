@@ -113,7 +113,6 @@ android_library {
         "androidx.slice_slice-view",
         "androidx.cardview_cardview",
         "iconloader_base",
-        "SettingsLib",
     ],
     manifest: "AndroidManifest-common.xml",
     sdk_version: "current",
